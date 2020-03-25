@@ -1,0 +1,2 @@
+# NoteTaker
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/277325f689744866885f232abc784667)](https://app.codacy.com/manual/jeetg57/NoteTaker?utm_source=github.com&utm_medium=referral&utm_content=Jeetg57/NoteTaker&utm_campaign=Badge_Grade_Dashboard)
