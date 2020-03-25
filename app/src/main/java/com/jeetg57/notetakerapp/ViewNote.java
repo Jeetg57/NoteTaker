@@ -33,7 +33,6 @@ public class ViewNote extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         loadData();
-
     }
 
     private void loadData() {
@@ -96,7 +95,13 @@ public class ViewNote extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

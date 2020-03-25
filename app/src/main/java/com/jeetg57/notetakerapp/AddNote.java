@@ -2,6 +2,7 @@ package com.jeetg57.notetakerapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -78,6 +78,8 @@ public class AddNote extends AppCompatActivity {
         }
     }
 
+
+
     public void cancel(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -110,6 +112,7 @@ public class AddNote extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+
         return true;
     }
 
