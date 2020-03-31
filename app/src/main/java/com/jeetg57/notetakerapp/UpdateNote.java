@@ -20,7 +20,6 @@ import java.io.IOException;
 
 public class UpdateNote extends AppCompatActivity {
     String filename;
-    public static final String EXTRA_MESSAGE = "com.jeetg57.notetakerapp.FILENAME";
     File newfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class UpdateNote extends AppCompatActivity {
                 text.append('\n');
             }
             br.close();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
         String result = text.toString();
         note.setText(result);
@@ -67,23 +66,22 @@ public class UpdateNote extends AppCompatActivity {
         if(filecompare.isEmpty()){
             Toast.makeText(context, "Please input a title", Toast.LENGTH_SHORT).show();
         }
-        else if(filename != filecompare){
-           File docsFolder = new File(context.getFilesDir(), "/MyNotes/" + filename);
+        else if(!filename.contains(filecompare)){
+            File docsFolder = new File(context.getFilesDir(), "/MyNotes/" + filename);
             boolean deleted = docsFolder.delete();
-            update();
+            updateNote();
+            Toast.makeText(context, filename + "and "+ filecompare, Toast.LENGTH_SHORT).show();
             Toast.makeText(UpdateNote.this,
                     "Note Updated Successfully", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
     }
         else{
-            update();
+            updateNote();
             Toast.makeText(UpdateNote.this,
                     "Note Updated Successfully", Toast.LENGTH_LONG).show();
             finish();
         }
-
-
     }
     public boolean onOptionsItemSelected(MenuItem item){
         if (item.getItemId() == android.R.id.home) {
@@ -96,7 +94,7 @@ public class UpdateNote extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
-    private void update(){
+    private void updateNote(){
         EditText title = findViewById(R.id.title);
         String titles = title.getText().toString().trim();
         EditText editText = findViewById(R.id.note_et);
