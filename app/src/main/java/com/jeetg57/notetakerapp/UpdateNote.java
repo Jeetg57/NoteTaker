@@ -1,5 +1,6 @@
 package com.jeetg57.notetakerapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import java.io.IOException;
 
 public class UpdateNote extends AppCompatActivity {
     String filename;
+    public static final String EXTRA_MESSAGE = "com.jeetg57.notetakerapp.FILENAME";
     File newfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,37 +61,34 @@ public class UpdateNote extends AppCompatActivity {
         note.requestFocus();
     }
     public void update(View v){
+        final Context context = this;
         EditText title = findViewById(R.id.title);
-        String titles = title.getText().toString().trim();
-        EditText editText = findViewById(R.id.note_et);
-        String fileContents = editText.getText().toString();
-        File file = new File(this.getFilesDir(), "/MyNotes/" + titles);
-
-            FileOutputStream fos = null;
-            try {
-                fos = new FileOutputStream(file);
-                fos.write(fileContents.getBytes());
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            } finally {
-                if (fos != null) {
-                    try {
-                        fos.close();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        String filecompare = title.getText().toString();
+        if(filecompare.isEmpty()){
+            Toast.makeText(context, "Please input a title", Toast.LENGTH_SHORT).show();
+        }
+        else if(filename != filecompare){
+           File docsFolder = new File(context.getFilesDir(), "/MyNotes/" + filename);
+            boolean deleted = docsFolder.delete();
+            update();
+            Toast.makeText(UpdateNote.this,
+                    "Note Updated Successfully", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+    }
+        else{
+            update();
             Toast.makeText(UpdateNote.this,
                     "Note Updated Successfully", Toast.LENGTH_LONG).show();
             finish();
+        }
+
+
     }
     public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -97,5 +96,28 @@ public class UpdateNote extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
+    private void update(){
+        EditText title = findViewById(R.id.title);
+        String titles = title.getText().toString().trim();
+        EditText editText = findViewById(R.id.note_et);
+        String fileContents = editText.getText().toString();
+        File file = new File(this.getFilesDir(), "/MyNotes/" + titles);
 
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+            fos.write(fileContents.getBytes());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

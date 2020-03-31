@@ -6,21 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".UpdateNote">
 
-    <Button
-        android:id="@+id/button3"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/btn_rounded"
-        android:drawableLeft="@drawable/ic_done_24px"
-        android:drawablePadding="5dp"
+        android:clickable="true"
         android:onClick="update"
-        android:padding="10dp"
-        android:text="@string/update_note"
-        android:textColor="@color/textColorLight"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_done_24px"
+        android:focusable="true" />
 
     <EditText
         android:id="@+id/title"
@@ -29,22 +27,22 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:autofillHints=""
         android:background="@android:color/transparent"
         android:ems="10"
-        android:enabled="false"
+        android:enabled="true"
         android:hint="@string/title"
         android:inputType="textLongMessage|textMultiLine|textCapSentences"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="409dp"
-        android:layout_height="1dp"
+        android:layout_height="1.5dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -60,8 +58,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2">
@@ -75,14 +72,14 @@
                 android:id="@+id/note_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints=""
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/enter_your_text_here"
                 android:inputType="textLongMessage|textMultiLine|textCapSentences"
                 android:paddingBottom="10dp"
-                android:textSize="24sp"
-                android:autofillHints="" />
+                android:textSize="24sp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
