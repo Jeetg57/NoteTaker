@@ -75,20 +75,17 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/edited_date"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_rounded"
-        android:drawableStart="@drawable/ic_create_24px"
-        android:drawablePadding="5dp"
-        android:onClick="update"
-        android:padding="10dp"
-        android:text="@string/edit_file"
+        android:background="#121212"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="TextView"
         android:textColor="@color/textColorLight"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

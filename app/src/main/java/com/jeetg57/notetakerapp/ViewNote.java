@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
@@ -18,6 +17,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ViewNote extends AppCompatActivity {
     String filename;
@@ -58,9 +59,14 @@ public class ViewNote extends AppCompatActivity {
             }
             String result = text.toString();
             note.setText(result);
+            TextView edited_date = findViewById(R.id.edited_date);
+            Date lastModDate = new Date(newfile.lastModified());
+            SimpleDateFormat formatter = new SimpleDateFormat("MMM dd, YYYY HH:mm");
+            String strDate= formatter.format(lastModDate);
+            edited_date.setText("Edited " + strDate);
         }
     }
-    public void update(View v){
+    private void update(){
         Intent intent = new Intent(this,UpdateNote.class);
         intent.putExtra(EXTRA_MESSAGE, filename);
         startActivity(intent);
@@ -115,6 +121,9 @@ public class ViewNote extends AppCompatActivity {
                 return true;
             case R.id.delete_note:
                 delete();
+                return true;
+            case R.id.edit_note:
+                update();
                 return true;
         }
         return super.onOptionsItemSelected(item);
